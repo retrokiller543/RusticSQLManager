@@ -40,7 +40,7 @@ async fn main() -> Result<()> {
 async fn execute_sql(sql: String, host: String, user: String) -> Result<()> {
     print_sql_query_with_filtered_password(sql.clone());
 
-    println!("{sql}; Do you want to continue? (y/n)");
+    println!("Do you want to continue? (y/n)");
     if !yes_or_no()? {
         return Ok(());
     }
@@ -81,5 +81,7 @@ fn print_sql_query_with_filtered_password(query: String) {
 
         // Print the filtered SQL query
         println!("{}", filtered_sql_query);
+    } else {
+        println!("{}", query);
     }
 }
