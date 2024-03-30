@@ -16,10 +16,16 @@ pub fn parse_create_command(command: &CreateType) -> Result<String> {
                 .as_ref()
                 .map(|grants| grants.join(","))
                 .unwrap_or_default();
-
-            let permissions =
-                format!("GRANT {grants_creation} ON `{database}`.`{table}` TO `{name}`@`{host}`");
-            Ok(format!("{};\n{}", user_creation, permissions))
+            
+            if grants_creation.is_empty() {
+                Ok(format!(
+                    "{user_creation}",
+                ))
+            } else {
+                Ok(format!(
+                    "{user_creation}; GRANT {grants_creation} ON `{database}`.`{table}` TO `{name}`@`{host}`",
+                ))
+            }
         }
         CreateType::Database { name } => Ok(format!("CREATE DATABASE `{}`", name)),
     }

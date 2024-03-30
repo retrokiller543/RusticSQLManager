@@ -15,7 +15,7 @@ pub fn get_db_pass(usr: &str, host: &str) -> Result<String> {
                     let pass = rpassword::prompt_password("Enter User password: ")?;
                     // does the user want to save the password? y/n
                     loop {
-                        println!("Do you want to save your password? (yes|Y|y/no|N|n)");
+                        println!("Do you want to save your password? (yes|y/no|n)");
                         let mut save_password = String::new();
                         io::stdin()
                             .read_line(&mut save_password)
