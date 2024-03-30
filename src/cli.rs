@@ -1,6 +1,22 @@
 use crate::config::AppConfig;
 use clap::{Args, Parser, Subcommand};
 
+/// # CLI Structure
+///
+/// The structure of the App will look something like this:
+///
+/// ```bash
+/// $ app [OPTIONS] SUBCOMMAND
+///
+/// OPTIONS:
+///     -u, --user <user>      Sets the user
+///     -H, --host <host>      Sets the host
+///
+/// SUBCOMMANDS:
+///     create      Create a new user or database
+///     config      Configure the application
+///     remove      Remove a user or database
+/// ```
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 pub struct Command {
